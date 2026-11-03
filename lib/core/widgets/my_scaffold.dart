@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:taskati_app/core/constants/app_images.dart';
 
 class MyScaffold extends StatelessWidget {
-  const MyScaffold({super.key, required this.body, this.appBar});
+  const MyScaffold({super.key, required this.body, this.appBar, this.padding});
   final Widget body;
   final PreferredSizeWidget? appBar;
+  final EdgeInsetsGeometry? padding;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,10 @@ class MyScaffold extends StatelessWidget {
           Scaffold(
             backgroundColor: Colors.transparent,
             appBar: appBar,
-            body: body,
+            body: Padding(
+              padding: padding ?? const EdgeInsets.all(20),
+              child: body,
+            ),
           ),
         ],
       ),

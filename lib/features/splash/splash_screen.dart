@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
-import 'package:taskati_app/core/constants/app_colors.dart';
+import 'package:taskati_app/core/styles/app_colors.dart';
 import 'package:taskati_app/core/constants/app_images.dart';
+import 'package:taskati_app/core/services/local/hive_provider.dart';
 import 'package:taskati_app/core/styles/app_style.dart';
 import 'package:taskati_app/core/widgets/my_scaffold.dart';
+import 'package:taskati_app/features/home/screens/home_screen.dart';
 import 'package:taskati_app/features/upload/upload_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -15,14 +17,29 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  bool userHasData =
+      HiveProvider.getData(HiveProvider.kName) != null &&
+      HiveProvider.getData(HiveProvider.kImage) != null;
+
   @override
   initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const UploadScreen()),
-      );
+      if (userHasData) {
+        if (mounted) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const HomeScreen()),
+          );
+        } else {
+          if (mounted) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const UploadScreen()),
+            );
+          }
+        }
+      }
     });
   }
 

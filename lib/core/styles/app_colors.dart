@@ -17,6 +17,7 @@ class AppColors {
   static const Color bottomcl = Color(0xFFFEFEFE);
   static const Color blurcl = Color(0xFFA7AEC1);
   static const Color lightgreen = Color(0xFFDBF8B8);
+  static const Color primaryColor100 = Color(0xff8764ff);
 }
 
 class LightPalette {

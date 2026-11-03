@@ -2,17 +2,18 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:taskati_app/core/constants/app_colors.dart';
+import 'package:taskati_app/core/styles/app_colors.dart';
 import 'package:taskati_app/core/constants/app_images.dart';
 import 'package:taskati_app/core/functions/toast.dart';
+import 'package:taskati_app/core/services/local/hive_provider.dart';
 
 import 'package:taskati_app/core/styles/app_style.dart';
 import 'package:taskati_app/core/widgets/custom_main_button.dart';
 import 'package:taskati_app/core/widgets/custom_text_field.dart';
 import 'package:taskati_app/core/widgets/my_scaffold.dart';
 import 'package:taskati_app/core/widgets/secoundry_button.dart';
+import 'package:taskati_app/features/home/screens/home_screen.dart';
 
 class UploadScreen extends StatefulWidget {
   const UploadScreen({super.key});
@@ -162,9 +163,18 @@ class _UploadScreenState extends State<UploadScreen> {
                 } else if (imagePath.isEmpty && controller.text.isNotEmpty) {
                   showErrorDialog(context, 'Please upload an image.');
                 } else {
-                  final box = await Hive.openBox('Image');
-                  box.put('name', controller.text);
-                  box.put('image', imagePath);
+                  HiveProvider.caschedUserData(
+                    name: controller.text,
+                    imagePath: imagePath,
+                  );
+                  if (mounted) {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomeScreen(),
+                      ),
+                    );
+                  }
                 }
               },
             ),

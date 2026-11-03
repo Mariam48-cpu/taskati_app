@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hive_ce_flutter/hive_ce_flutter.dart';
+import 'package:taskati_app/core/services/local/hive_provider.dart';
 import 'package:taskati_app/core/theme/app_theme.dart';
 import 'package:taskati_app/features/splash/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Hive.initFlutter();
-  await Hive.openBox('Image');
+  await HiveProvider.init();
   runApp(const MyApp());
 }
 

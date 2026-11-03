@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taskati_app/core/constants/app_colors.dart';
+import 'package:taskati_app/core/styles/app_colors.dart';
 import 'package:taskati_app/core/styles/app_style.dart';
 
 class MainButton extends StatelessWidget {
