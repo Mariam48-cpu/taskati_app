@@ -22,26 +22,30 @@ class _SplashScreenState extends State<SplashScreen> {
       HiveProvider.getData(HiveProvider.kImage) != null;
 
   @override
-  initState() {
+  void initState() {
     super.initState();
+
     Future.delayed(const Duration(seconds: 3), () {
+      if (!mounted) return;
+
       if (userHasData) {
-        if (mounted) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()),
-          );
-        } else {
-          if (mounted) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const UploadScreen()),
-            );
-          }
-        }
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomeScreen(),
+          ),
+        );
+      } else {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const UploadScreen(),
+          ),
+        );
       }
     });
   }
+
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,7 @@
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+
 import 'package:taskati_app/core/styles/app_colors.dart';
 import 'package:taskati_app/core/styles/app_style.dart';
 
@@ -22,51 +24,62 @@ class TaskCard extends StatelessWidget {
         ],
       ),
       child: Column(
-        spacing: 8,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Task ',
-            style: TextStyles.body.copyWith(fontWeight: FontWeight.w600),
+            'Task',
+            style: TextStyles.body.copyWith(
+              fontWeight: FontWeight.w600,
+            ),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
-          Text('Description For Task ', style: TextStyles.caption1),
+
+          const Gap(8),
+
+          Text(
+            'Description For Task',
+            style: TextStyles.caption1,
+          ),
+
+          const Gap(8),
+
           Row(
             children: [
-              Row(
-                children: [
-                  Icon(
-                    Icons.watch_later_rounded,
+              Icon(
+                Icons.watch_later_rounded,
+                color: AppColors.primaryColor100,
+                size: 18,
+              ),
+
+              const Gap(4),
+
+              Expanded(
+                child: Text(
+                  '10 AM : 12:00 PM',
+                  style: TextStyles.caption2.copyWith(
                     color: AppColors.primaryColor100,
-                    size: 18,
                   ),
-                  const Gap(4),
-                  Text(
-                    '12:00 PM : 10 AM',
-                    style: TextStyles.caption2.copyWith(
-                      color: AppColors.primaryColor100,
-                    ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8,
+                  vertical: 4,
+                ),
+                decoration: BoxDecoration(
+                  color: AppColors.primaryColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  'Done',
+                  style: TextStyles.caption2.copyWith(
+                    color: AppColors.whiteColor,
+                    fontWeight: FontWeight.w600,
                   ),
-                  Spacer(),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
-                    ),
-                    decoration: BoxDecoration(
-                      color: AppColors.primaryColor,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Text(
-                      'Done',
-                      style: TextStyles.caption2.copyWith(
-                        color: AppColors.primaryColor,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ],
           ),
