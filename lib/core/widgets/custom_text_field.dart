@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:taskati_app/core/styles/app_colors.dart';
 import 'package:taskati_app/core/styles/app_style.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -10,7 +11,7 @@ class CustomTextField extends StatelessWidget {
     this.prefixIcon,
     this.validator,
     this.controller,
-    this.maxLines = 1,
+    this.maxLines,
     this.keyboardType,
     this.obscureText = false,
   });
@@ -20,7 +21,7 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final Icon? prefixIcon;
   final String? Function(String?)? validator;
-  final int maxLines;
+  final int? maxLines;
   final TextInputType? keyboardType;
   final bool obscureText;
 
@@ -38,56 +39,71 @@ class CustomTextField extends StatelessWidget {
             title!,
             style: TextStyles.caption1.copyWith(
               fontWeight: FontWeight.w600,
-              color: colors.onSurface,
+              color: AppColors.greyColor,
             ),
           ),
           const Gap(8),
         ],
-        TextFormField(
-          controller: controller,
-          maxLines: obscureText ? 1 : maxLines,
-          minLines: 1,
-          keyboardType: keyboardType,
-          obscureText: obscureText,
-          validator: validator,
-          style: TextStyles.caption1.copyWith(color: colors.onSurface),
-          cursorColor: colors.primary,
-          onTapOutside: (_) {
-            FocusManager.instance.primaryFocus?.unfocus();
-          },
-          decoration: InputDecoration(
-            hintText: hintText,
-            hintStyle: TextStyles.caption1.copyWith(
-              color: isDark
-                  ? Colors.white54
-                  : const Color.fromARGB(255, 76, 78, 80),
-            ),
-            prefixIcon: prefixIcon,
-            prefixIconColor: isDark ? Colors.white54 : const Color(0xFF9CA3AF),
-            filled: true,
-            fillColor: isDark ? const Color(0xFF252525) : Colors.white,
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 16,
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(14),
-              borderSide: BorderSide(
-                color: isDark ? Colors.white12 : const Color(0xFFE5E7EB),
-                width: 1,
+        Container(
+          decoration: BoxDecoration(
+            color: AppColors.whiteColor,
+            borderRadius: BorderRadius.circular(14),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.secondaryColor,
+                blurRadius: 20,
+                offset: const Offset(0, 3),
               ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(14),
-              borderSide: BorderSide(color: colors.primary, width: 1.5),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(14),
-              borderSide: BorderSide(color: colors.error, width: 1),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(14),
-              borderSide: BorderSide(color: colors.error, width: 1.5),
+            ],
+          ),
+          child: TextFormField(
+            controller: controller,
+            maxLines: obscureText ? 1 : maxLines,
+            minLines: 1,
+            keyboardType: keyboardType,
+            obscureText: obscureText,
+            validator: validator,
+            style: TextStyles.caption1.copyWith(color: colors.onSurface),
+            cursorColor: colors.primary,
+            onTapOutside: (_) {
+              FocusManager.instance.primaryFocus?.unfocus();
+            },
+            decoration: InputDecoration(
+              hintText: hintText,
+              hintStyle: TextStyles.caption1.copyWith(
+                color: isDark
+                    ? Colors.white54
+                    : const Color.fromARGB(255, 76, 78, 80),
+              ),
+              prefixIcon: prefixIcon,
+              prefixIconColor: isDark
+                  ? Colors.white54
+                  : const Color(0xFF9CA3AF),
+              filled: true,
+              fillColor: isDark ? const Color(0xFF252525) : Colors.white,
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 16,
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(14),
+                borderSide: BorderSide(
+                  color: isDark ? Colors.white12 : const Color(0xFFE5E7EB),
+                  width: 1,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(14),
+                borderSide: BorderSide(color: colors.primary, width: 1.5),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(14),
+                borderSide: BorderSide(color: colors.error, width: 1),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(14),
+                borderSide: BorderSide(color: colors.error, width: 1.5),
+              ),
             ),
           ),
         ),

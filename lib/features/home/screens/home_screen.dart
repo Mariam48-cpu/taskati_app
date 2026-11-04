@@ -1,10 +1,10 @@
-
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import 'package:taskati_app/core/styles/app_colors.dart';
 import 'package:taskati_app/core/widgets/my_scaffold.dart';
+import 'package:taskati_app/features/create_task/screens/create_task_screen.dart';
 import 'package:taskati_app/features/home/widgets/daily_progress.dart';
 import 'package:taskati_app/features/home/widgets/home_header.dart';
 import 'package:taskati_app/features/home/widgets/tasks_builder.dart';
@@ -26,9 +26,7 @@ class HomeScreen extends StatelessWidget {
             const Gap(16),
 
             DatePicker(
-              DateTime.now().subtract(
-                const Duration(days: 3),
-              ),
+              DateTime.now().subtract(const Duration(days: 3)),
               height: 80,
               width: 65,
               initialSelectedDate: DateTime.now(),
@@ -40,11 +38,19 @@ class HomeScreen extends StatelessWidget {
 
             const Gap(12),
 
-            const Expanded(
-              child: TasksBuilder(),
-            ),
+            const Expanded(child: TasksBuilder()),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColors.primaryColor,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const CreateTaskScreen()),
+          );
+        },
+        child: const Icon(Icons.add, color: AppColors.whiteColor),
       ),
     );
   }

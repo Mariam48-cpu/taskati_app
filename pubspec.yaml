@@ -37,7 +37,7 @@ dependencies:
   gap: ^3.0.1
   lottie: ^3.6.1
   flutter_screenutil: ^5.9.3
-  flutter_svg: ^2.3.0
+  flutter_svg: ^2.3.2
   image_picker: ^1.2.4
   hive_ce: ^2.22.0
   hive_ce_flutter: ^2.5.0
